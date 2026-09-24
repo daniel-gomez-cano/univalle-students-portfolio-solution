@@ -36,7 +36,9 @@ target/
 # ─────────────────────────────────────────────
 # Go
 # ─────────────────────────────────────────────
-bin/
+# bin/  ← COMENTADO A PROPÓSITO: ignoraba 'bin/' a secas y excluía cdk/bin/cdk.ts
+#          (el entrypoint de CDK). El repo quedaba sin poder ejecutar `cdk synth`.
+#          Si algún día compilas binarios de Go, usa '/bin/' (solo raíz) en vez de 'bin/'.
 *.exe
 
 # ─────────────────────────────────────────────
@@ -51,6 +53,9 @@ obj/
 .env
 .env.*
 *.pem
+# Excepción (Boss Fight): la llave PÚBLICA de CloudFront sí debe subirse al repo.
+# La privada (cloudfront-private.pem) queda igual bloqueada por la regla de arriba.
+!cdk/keys/cloudfront-public.pem
 aws-exports.js
 
 # ─────────────────────────────────────────────
